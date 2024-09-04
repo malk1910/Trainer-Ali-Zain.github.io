@@ -1,0 +1,279 @@
+<html>
+    <head>
+        <title>BMI calculations</title>
+        <meta chartset="UTF-8">
+
+        <style>
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background:orange;
+            }
+            .box{
+                width: 500px;
+                background: #fafafa;
+                border-radius: 12px;
+                text-align: center;
+                box-shadow: 2px 2px 20px 5px rgba(0,0,0,0.5);
+            }
+            h1{
+                color:rgba(0,0,0,0.7);
+                font-weight: bold;
+                font-size: 36px;
+                padding: 30px 0;
+            }
+            .content{
+                padding: 0 30px;
+            }
+            .input{
+                background: #fff;
+                box-shadow: 0px 0px 95px -30px rgba(0,0,0,0.15);
+                border-radius: 12px;
+                padding: 20px 0;
+                margin-bottom: 20px;
+            }
+            .input label{
+                display: block;
+                font-size: 18px;
+                font-weight: 600;
+                color:#000;
+                margin-bottom: 20px;
+            }
+            .input input,
+            .inputW input,
+            .inputH input
+            {
+                outline: none;
+                border: none;
+                border-bottom: 1px solid orange;
+                width: 50%;
+                text-align: center;
+                font-size: 28px;
+                font-family: "nunito",sans-serif;
+            }
+            .inputW{
+                background: #fff;
+                box-shadow: 0px 0px 95px -30px rgba(0,0,0,0.15);
+                border-radius: 12px;
+                padding: 10px 0;
+                margin-bottom: 20px;
+            }
+            .inputW label,
+            .inputH label
+            {
+                display: block;
+                font-size: 18px;
+                font-weight: 600;
+                color:#000;
+                margin-bottom: 20px;
+
+            }
+            .inputH{
+                background: #fff;
+                box-shadow: 0px 0px 95px -30px rgba(0,0,0,0.15);
+                border-radius: 12px;
+                padding: 10px 0;
+                margin-bottom: 20px;
+                margin-right: 20px;
+            }
+            button .calculate{
+                cursor: pointer;
+                font-family: "nunito",sans-serif;
+                color:#fff;
+                background: orange;
+                font-size: 16px;
+                border-radius: 7px;
+                padding: 12px 0;
+                width: 100%;
+                border: none;
+                outline: none;
+                transition: all 0.5s;
+
+            }
+           button.calculate:hover{
+                background:orange;
+            }
+            .result{
+                padding: 10px 20px;
+            }
+            .result p{
+                font-weight: 600;
+                font-size: 22px;
+                color: #000;
+                margin-bottom: 15px;
+
+            }
+            .result #result{
+                font-size: 36px;
+                font-weight: 900;
+                color: orange;
+                background-color: #eaeaea;
+                display: inline-block;
+                padding: 7px 20px;
+                border-radius: 55px;
+                margin-bottom: 25px;
+
+            }
+            #comment{
+                color: orange;
+                font-weight: 800;
+            }
+            .comment{
+                display: none;
+                border: dashed 1px;
+                border-radius: 7px;
+                padding: 5px;
+            }
+            .footer{
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                padding: 10px 15px;
+            }
+            .footer-text{
+                text-decoration: none;
+                color: rgba(40,40,40,0.8);
+                font-family: 'poppins' sans-serif;
+                font-weight: 200;
+                font-size: 14px;
+                transition: all 0.5s;
+
+            }
+            .footer-text:hover{
+                color: rgba(40,40,40,1);
+            }
+            .gender{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                align-content: center;
+                background: #fff;
+                box-shadow: 0px 0px 95px -30px rgba(0,0,0,0.15);
+                border-radius: 12px;
+                padding: 20px 0;
+                margin-bottom: 20px;
+            }
+            .gender .container{
+                display: block;
+                position: relative;
+                padding-left: 35px;
+                margin-top: 7px;
+                cursor: pointer;
+                font-size: 22px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .gender .container input{
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+
+            }
+            .checkmark{
+                position: absolute;
+                top:0;
+                left:0;
+                height: 25px;
+                width: 25px;
+                background: #eee;
+                border-radius: 50%;
+            }
+            .gender .container:hover input ~ .checkmark{
+                background-color: #ccc;
+
+            }
+.gender .container input:checked ~ .checkmark{
+                background-color:orange;
+                
+            }
+
+            @media (max-width: 700px) {
+                .box{
+                    width: 380px;
+                }
+                .input label{
+                    font-size: 18px;
+                }
+                .inputH label,
+                .inputW label{
+                    font-size: 14px;
+                }
+                .input input,
+                .inputH input,
+                .inputW input{
+                    font-size: 24px;
+                }
+                .modal-content{
+                    width: 380px;
+                }
+                .linkdownload{
+                    display: none;
+                }
+            }
+
+
+
+
+
+
+
+
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+                <h1>BMI Calculator</h1>
+                <div class="content">
+                    <div class="input">
+                        <label for="height">Age</label>
+                        <input type="text" class="text-input" id="age" autocomplete="off" required/>
+                    </div>
+                    <div class="gender">
+                        <label class="container">
+                            <input type="radio" name="radio" id="m" ><p class="text">Male</p>
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container">
+                            <input type="radio" name="radio" id="f" ><p class="text">Female</p>
+                            <span class="checkmark"></span>
+                        </label>
+
+                    </div>
+                    <div class="containerHW">
+                        <div class="inputH">
+                            <label for="height">Height(cm)</label>
+                            <input type="number" id="height" required>
+                        </div>
+                        <div class="inputW">
+                            <label for="weight">Weight(Kg)</label>
+                            <input type="number" id="weight" required>
+                        </div>
+                    </div>
+                    <button class="calculate" id="submit" onclick="calculate();">Calculate BMI</button>
+                </div>
+                <div class="result">
+                    <p>Your BMI is</p>
+                    <div id="result">00.00</div>
+                    <p class="comment"></p>
+                </div>
+                <div class="footer"><a class="footer-text" target="_blank" href="https://myskypower.net/">By my skypower</a></div>
+            </div>
+        </div>
+        <a href="bmi-calculator-javascript.zip" target="_blank" class="linkdownload">Download source code</a>
+
+        <div id="mymodal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modaltext"></p>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
